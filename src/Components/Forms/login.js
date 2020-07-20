@@ -35,10 +35,9 @@ class Login extends Component {
   handleFormSubmit = (event) => {
     console.log(this.state.email, this.state.password);
     event.preventDefault();
-    //https://ninjapsapi.azurewebsites.net/api/v1/seats
-    //https://seatbookingapininja.azurewebsites.net/api/v1/bookings
-    fetch("http://localhost:5000/api/v1/auth/login", {
-      //fetch("https://ninjapsapi.azurewebsites.net/api/v1/auth/login", {
+
+    //fetch("http://localhost:5000/api/v1/auth/login", {
+    fetch("https://seatbookingapininja.azurewebsites.net/api/v1/auth/login ", {
       method: "post",
       headers: {
         Accept: "application/json",

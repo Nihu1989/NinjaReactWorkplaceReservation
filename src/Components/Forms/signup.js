@@ -29,20 +29,23 @@ class Signup extends Component {
   handleSignupFormSubmit = (event) => {
     console.log(this.state.name, this.state.email, this.state.password);
     event.preventDefault();
-    //fetch("https://ninjapsapi.azurewebsites.net/api/v1/auth/register", {
-      fetch("http://localhost:5000/api/v1/auth/register", {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-        role: "user",
-      }),
-    })
+    fetch(
+      "https://seatbookingapininja.azurewebsites.net/api/v1/auth/register",
+      {
+        //fetch("http://localhost:5000/api/v1/auth/register", {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.password,
+          role: "user",
+        }),
+      }
+    )
       .then((Response) => Response.json())
       .then((result) => {
         console.log(result);

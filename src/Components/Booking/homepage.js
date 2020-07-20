@@ -67,7 +67,7 @@ const Homepage = (props) => {
         <select
           className='form-control'
           value={props.selectedSite}
-          name='selectedSite'
+          name='selectedSite'mike nor
           onChange={(e) => {
             props.onSelect(e);
           }}>

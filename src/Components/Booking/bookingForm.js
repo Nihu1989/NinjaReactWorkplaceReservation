@@ -4,6 +4,7 @@ import BookSeats from "./bookSeats";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import DayPickerInput from "react-day-picker/DayPickerInput";
+import "react-day-picker/lib/style.css";
 
 class BookingForm extends Component {
   state = {
@@ -25,6 +26,27 @@ class BookingForm extends Component {
     console.log("Submitting This Data ", {
       ...this.state,
       seatuniqueid: this.GetUniqeSeatNumber(),
+    });
+
+    console.log("seatuniqueid", this.GetUniqeSeatNumber());
+    const requestDataToBookApi = {
+      email: this.state.email,
+      seatuniqueid: this.state.seatuniqueid,
+      datefrom: "01/01/2020",
+      dateto: "01/02/2020",
+      datearray: ["01/01/2020", "02/02/2020"],
+    };
+    console.log("requestDataToBookApi", requestDataToBookApi);
+    const bookingURL =
+    //.get(`https://seatbookingapininja.azurewebsites.net/api/v1/seats`)  
+    "https:localhost:5000/api/v1/seats/" +
+      this.state.seatuniqueid +
+      "/bookings";
+    console.log(bookingURL);
+
+    axios.post(bookingURL, requestDataToBookApi).then((res) => {
+      console.log("booking res", res);
+      console.log("booking res data", res.data);
     });
   };
   onSelect = (e) => {
@@ -66,7 +88,8 @@ class BookingForm extends Component {
   };
   componentWillMount() {
     axios
-      .get(`http://localhost:5000/api/v1/seats`)
+      //.get(`http://localhost:5000/api/v1/seats`)
+      .get(`https://seatbookingapininja.azurewebsites.net/api/v1/seats`)
       .then((res) => {
         const result = res.data.data;
         this.setState({ result });
